@@ -1,0 +1,52 @@
+<h2 fxLayoutAlign="center"> Farmacia</h2>&nbsp;
+<form [formGroup]="form" novalidate>
+
+  <div>
+    <mat-form-field class="example-full-width">
+      <mat-label>Nome Farmacia:</mat-label>
+      <input matInput placeholder="Nome da Farmacia" formControlName="nome">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-select placeholder="Bairro" formControlName="neighborhoods">
+      <mat-option *ngFor="let item of listBairro" [value]="item.id" required>
+        {{ item.nome }}
+      </mat-option>
+    </mat-select>
+  </div>
+
+  <fieldset class="box-border">
+    <legend class="box-boder-title">É 24 horas:</legend>
+    <mat-radio-group class="radio input-group" formControlName="isOpen" required>
+      <mat-radio-button value="{{1}}">Sim</mat-radio-button> &nbsp;
+      <mat-radio-button value="{{0}}">Não</mat-radio-button>
+    </mat-radio-group>
+  </fieldset>
+
+  <button mat-raised-button color="primary" (click)="cadastrar()">Add</button>&nbsp;
+  <button mat-raised-button color="primary" (click)="removeFarmacia()">Deletar</button>&nbsp;
+  <button mat-raised-button color="primary" (click)="atualizaFarmacia()">Alterar</button>&nbsp;
+  <button mat-raised-button color="primary" (click)="buscar()" >Buscar</button>
+
+  
+
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th class="text-center">Bairro</th>
+      <th class="text-center">Farmacia</th>
+      <th class="text-center"> É 24 horas</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of  listFarmacia">
+      <td>{{listFarmacia.neighborhoods}}</td>
+      <td>{{listFarmacia.name}}</td>
+      <td>{{listFarmacia.isOpen}}</td>
+</table>
+
+<div>
+  <a mat-raised-button routerLink="/menu">Voltar</a>
+</div>
